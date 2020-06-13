@@ -78,8 +78,6 @@ const getRemotiveJobs = async () => {
     );
     let jobs = await feed.data.jobs;
 
-    console.log(jobs[0]);
-
     let job = {};
 
     jobs.forEach(async (jobItem) => {
@@ -87,9 +85,7 @@ const getRemotiveJobs = async () => {
       const doesExist = await Job.findOne({ id: jobItem.id });
 
       if (doesExist === null) {
-        //create job to add to the db
-
-        //add to categories
+        //add to key tags to categories
         let categories = [...jobItem.tags];
         const keys = jobItem.title.toLowerCase().split(" ");
         keys.forEach((word) => {
@@ -100,6 +96,7 @@ const getRemotiveJobs = async () => {
           }
         });
 
+        //create job to add to the db
         job = {
           title: jobItem.title,
           description: jobItem.description,
@@ -137,14 +134,13 @@ const getWwrJobs = async () => {
       const doesExist = await Job.findOne({ id: jobItem.guid });
 
       if (doesExist === null) {
-        // //manipulate title
-
+        //manipulate company name
         let company = jobItem.title.slice(0, jobItem.title.indexOf(":"));
 
-        // //manipulate company name by taking the part after 'at' in the title
+        //manipulate title
         let title = jobItem.title.slice(jobItem.title.indexOf(":") + 1);
 
-        //add to categories
+        //add key tags to categories
         let categories = [];
         const keys = jobItem.content.toLowerCase().split(" ");
         keys.forEach((word) => {
@@ -234,7 +230,7 @@ const getCareerJetJobs = async () => {
         // //manipulate company name by taking the part after 'at' in the title
         let company = jobItem.content.slice(0, jobItem.content.indexOf("-"));
 
-        //add to categories
+        //add key tags to categories
         let categories = [];
         const keys = jobItem.content.toLowerCase().split(" ");
         keys.forEach((word) => {
@@ -303,7 +299,7 @@ const getCareerJetJobs = async () => {
   }
 };
 
-//create getJobs funciton
+//create and export getJobs funciton
 
 const getJobs = async () => {
   try {
