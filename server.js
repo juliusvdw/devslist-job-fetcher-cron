@@ -12,4 +12,7 @@ connectDB();
 //Call getJobsCron that fetches jobs every two hours
 getJobsCron.start();
 
-app.listen(5000, console.log("server has started on port 5000"));
+//Declare PORT var. Default to 5000 if no env PORT is found
+const PORT = process.env.PORT || 5000;
+
+app.listen(PORT, console.log("server has started on port 5000"));
