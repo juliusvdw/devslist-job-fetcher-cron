@@ -299,7 +299,7 @@ const getCareerJetJobs = async () => {
   }
 };
 
-//create and export getJobs funciton
+//create and export getJobs function
 
 const getJobs = async () => {
   try {

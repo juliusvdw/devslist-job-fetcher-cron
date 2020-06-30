@@ -4,7 +4,7 @@ const getJobs = require("./getJobs");
 
 //Create Cron Job to fetch jobs every 2 hours
 const jobCron = new CronJob(
-  "0 */2 * * *",
+  " */1 * * * *",
   () => {
     getJobs();
   },

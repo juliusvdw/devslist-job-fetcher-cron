@@ -9,7 +9,7 @@ const getJobsCron = require("./workers/getJobsCron");
 //connect to mongo db
 connectDB();
 
-//Initiate getJobsCron that fetches jobs every two hours
+//Call getJobsCron that fetches jobs every two hours
 getJobsCron.start();
 
 app.listen(5000, console.log("server has started on port 5000"));
